@@ -1,17 +1,9 @@
-And (/^I am on the opinion page of the stage version of a USCP site$/) do
+Given (/^I am on the opinion page of the stage version of a USCP site$/) do
   visit('http://ux-preprod-app.democratandchronicle.com/opinion/')
   sleep 3
 end
 
-Given(/^my browser history is cleared$/) do
-  browser = Capybara.current_session.driver.browser
-  Capybara.default_wait_time = 12
-  browser.manage.delete_all_cookies
-  sleep 10
-end
-
-Then(/^I can see the PollDaddy module$/) do
-  #expect(page).to have_xpath("//div[@class='polldaddy-poll-suspender card-suspender']")
+And(/^I can see the PollDaddy module$/) do
   find("[class='polldaddy-poll-suspender card-suspender']")
 end
 
@@ -29,17 +21,19 @@ end
 
 When(/^I click on the 'View Results' link$/) do
   click_link("View Results")
+  sleep 3
 end
 
 When(/^I click on the 'See All Polls' link$/) do
   click_link("See All Polls")
+  sleep 3
 end
 
 Then(/^I am taken to the 'Polls' page$/) do
   expect(page).to have_content 'Polls'
 end
 
-And(/^I am on the 'Polls' page$/) do
+Given(/^I am on the 'Polls' page$/) do
   visit('http://ux-preprod-app.democratandchronicle.com/polls/all/')
   sleep 3
   expect(page).to have_content 'Polls'
@@ -47,6 +41,7 @@ end
 
 When(/^I click on the title of the first poll$/) do
   find(:xpath, '//div[@class=\'pmp-overlay-content\']/div[1]/a').click
+  sleep 3
 end
 
 Then(/^I am taken to the 'Your Say' page for that poll$/) do
@@ -62,11 +57,11 @@ Then(/^I can see the poll results for that poll$/) do
   find("[class='poll-answer-wrapper pmp-active']")
 end
 
-And(/^I am on the 'Your Say' page for a poll$/) do
+Given(/^I am on the 'Your Say' page for a poll$/) do
   visit('http://ux-preprod-app.democratandchronicle.com/polls/all/')
   sleep 3
   find(:xpath, '//div[@class=\'pmp-overlay-content\']/div[1]/a').click
-
+  sleep 3  
   find("[class='polls-primary-wrapper']")
   find("[class='poll-question-wrapper pmp-active']")
 end
