@@ -12,7 +12,8 @@ Then(/^I can see the word 'POLL' in the left suspender$/) do
 end
 
 When(/^I vote for the first poll choice$/) do
-  find(:xpath, '//div[@class=\'pmp-answer-options\']/div[1]').click
+  first('.pmp-answer-option ').click
+  sleep 3
 end
 
 Then(/^I can see the results of the poll$/) do
@@ -40,7 +41,7 @@ Given(/^I am on the 'Polls' page$/) do
 end
 
 When(/^I click on the title of the first poll$/) do
-  find(:xpath, '//div[@class=\'pmp-overlay-content\']/div[1]/a').click
+  first('.pmp-overlay-poll-link').click
   sleep 3
 end
 
@@ -50,7 +51,7 @@ Then(/^I am taken to the 'Your Say' page for that poll$/) do
 end
 
 When(/^I click on the first option$/) do
-  find(:xpath, '//div[@class=\'pmp-answer-options\']/div[1]').click
+  first('.pmp-answer-option ').click
 end
 
 Then(/^I can see the poll results for that poll$/) do
@@ -60,8 +61,8 @@ end
 Given(/^I am on the 'Your Say' page for a poll$/) do
   visit('http://ux-preprod-app.democratandchronicle.com/polls/all/')
   sleep 3
-  find(:xpath, '//div[@class=\'pmp-overlay-content\']/div[1]/a').click
-  sleep 3  
+  first('.pmp-overlay-poll-link').click
+  sleep 3
   find("[class='polls-primary-wrapper']")
   find("[class='poll-question-wrapper pmp-active']")
 end
