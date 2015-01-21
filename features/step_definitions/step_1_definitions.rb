@@ -24,7 +24,6 @@ end
 
 When(/^I click on the See All Polls link$/) do
   click_link("See All Polls")
-  sleep 4
 end
 
 Then(/^I am taken to the "(.*?)" page$/) do |textOnPage|
